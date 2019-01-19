@@ -17,21 +17,40 @@ var nlu = new NaturalLanguageUnderstandingV1({
 });
 
 // analyze sample text
-var options = {
+var params = {
     html: speechText,
     features: {
-        concepts: {},
-        keywords: {}
+        sentiment: {
+            document: true
+        },
+        emotion: {
+            document: true
+        },
+        concepts: {
+            limit: 3
+        },
+        entities: {
+            emotion: true
+        },
+        keywords: {
+            sentiment: true,
+            emotion: true,
+            limit: 5
+        },
+        
     }
 }
-nlu.analyze(options, function(err, res) {
+
+nlu.analyze(params, function(err, res) {
     if (err) {
         console.log(err);
         return;
     }
     console.log(res);
-    // TODO: save result to database or send directly to endpoint
-
+    // console.log(res.keywords);
+    // console.log(res.keywords[0]);
+    // console.log(res.keywords[0].sentiment)
+    // TODO: save result to database
 });
 
 
