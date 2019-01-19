@@ -6,7 +6,6 @@
 //  response.send("Hello from Firebase!");
 // });
 
-const serviceAccount = require('./serviceAccountKey.json')
 const express = require('express')
 const app = express();
 
@@ -16,7 +15,6 @@ const functions = require('firebase-functions');
 // The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin = require('firebase-admin');
 var serviceAccount = require('./serviceAccountKey.json');
-const bodyParser = require("body-parser")
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
