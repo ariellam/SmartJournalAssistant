@@ -36,6 +36,14 @@ exports.addMessage = functions.https.onRequest((req, res) => {
   });
 });
 
+exports.getMessages = functions.https.onRequest((req, res) => {
+    return admin.database().ref('/messages').once('value').then(function(snapshot) {
+        return res.status(200).send(snapshot.val());
+      }, function (error) {
+          console.log(error);
+      });
+})
+
 exports.testFunction = functions.https.onRequest((req, res) => {
     // Grab the text parameter.
     const original = req.query.text;
@@ -47,16 +55,20 @@ exports.testFunction = functions.https.onRequest((req, res) => {
     });
   });
   
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-});
+// app.get('/', function (req, res) {
+//     return admin.database().ref('/messages').once('value').then(function(snapshot) {
+//         return res.status(200).send(snapshot.val());
+//       }, function (error) {
+//           console.log(error);
+//       });
+// });
 
-app.post('/', function(req, res) {
-    const original = req.body;
-    res.send(original);
-    res.send("this works");
-})
+// app.post('/', function(req, res) {
+//     const original = req.body;
+//     res.send(original);
+//     res.send("this works");
+// })
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
-});
+// app.listen(3000, function () {
+//     console.log('Example app listening on port 3000!');
+// });
