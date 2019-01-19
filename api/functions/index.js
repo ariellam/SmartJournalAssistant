@@ -36,6 +36,7 @@ exports.addMessage = functions.https.onRequest((req, res) => {
   });
 });
 
+// functions deployed to Google Cloud
 exports.testFunction = functions.https.onRequest((req, res) => {
     // Grab the text parameter.
     const original = req.query.text;
@@ -47,6 +48,7 @@ exports.testFunction = functions.https.onRequest((req, res) => {
     });
   });
   
+// test code
 app.get('/', function (req, res) {
     res.send('Hello World!');
 });
