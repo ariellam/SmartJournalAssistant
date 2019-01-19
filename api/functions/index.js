@@ -6,6 +6,7 @@
 //  response.send("Hello from Firebase!");
 // });
 
+const serviceAccount = require('./serviceAccountKey.json')
 const express = require('express')
 const app = express();
 
@@ -15,6 +16,7 @@ const functions = require('firebase-functions');
 // The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin = require('firebase-admin');
 var serviceAccount = require('./serviceAccountKey.json');
+const bodyParser = require("body-parser")
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -26,7 +28,7 @@ admin.initializeApp({
 // Realtime Database under the path /messages/:pushId/original
 exports.addMessage = functions.https.onRequest((req, res) => {
   // Grab the text parameter.
-  const original = req.query.text;
+  const original = req.body;
   // Push the new message into the Realtime Database using the Firebase Admin SDK.
   return admin.database().ref('/messages').push({original: original}).then((snapshot) => {
     // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
