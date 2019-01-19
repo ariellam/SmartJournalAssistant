@@ -14,11 +14,11 @@ const functions = require('firebase-functions');
 
 // The Firebase Admin SDK to access the Firebase Realtime Database.
 const admin = require('firebase-admin');
-const dbName = 'describe-9e5c7';
+var serviceAccount = require('./serviceAccountKey.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: `https://${dbName}.firebaseio.com`,
+  databaseURL: `https://describe-9e5c7.firebaseio.com`,
   serviceAccount: serviceAccount
 });
 
@@ -33,3 +33,15 @@ exports.addMessage = functions.https.onRequest((req, res) => {
     return res.redirect(303, snapshot.ref.toString());
   });
 });
+
+exports.testFunction = functions.https.onRequest((req, res) => {
+  // Grab the text parameter.
+  const original = req.query.text;
+  // Push the new message into the Realtime Database using the Firebase Admin SDK.
+  return admin.database().ref('/messages').push({original: original}).then((snapshot) => {
+    // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
+    console.log("test function");
+    return res.redirect(303, snapshot.ref.toString());
+  });
+});
+
