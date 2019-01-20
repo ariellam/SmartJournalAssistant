@@ -6,13 +6,34 @@ var data = [
     "flow": [
       {
         "prompt": "How was your day today?",
-        "response": "It was okay, I guess."
+        "response": "It was good."
       },
       {
         "prompt": "Would you like to talk about it?",
-        "response": "Today I woke up at 6 a.m. I don’t like to wake up early but today I must go to school. I went to the bathroom and took a shower. Then I brushed my teeth. I put on my school uniform. I then went downstairs to eat breakfast. My mother and father were already in the kitchen. My father was reading the newspaper. My mother had cooked me fried eggs. I drank some orange juice while I watched the news on the television. I then got my school bag ready."
+        "response": "I'm attending my first hackathon at U of T this weekend! I'm so excited to see what hackathon culture is and I can't wait to make a cool product that I can show off. There are a ton of really cool sponsors and I can't wait to see what the prizes are. I'm thinking of doing a hack with Google Cloud Platform. They have a lot of cool libraries and APIs that I can't wait to try. I hope my project catches the attention of the judges."
       }
-    ]
+    ],
+    "analysis": {
+      "sentiment": {
+        "score": 0.81133,
+        "label": "positive"
+      }
+    },
+    "keywords": [
+      {
+       "text": "first hackathon"
+      },
+      {
+       "text": "cool product"
+      }
+    ],
+    "overall_emotion": {
+      "sadness": 0.212058,
+      "joy": 0.706605,
+      "fear": 0.097904,
+      "disgust": 0.068629,
+      "anger": 0.081693
+    }
   },
   {
     "time_created": "January 12th, 2019",
@@ -24,7 +45,7 @@ var data = [
       },
       {
         "prompt": "Would you like to talk about it?",
-        "response": "Today I woke up at 6 a.m. I don’t like to wake up early but today I must go to school. I went to the bathroom and took a shower. Then I brushed my teeth. I put on my school uniform. I then went downstairs to eat breakfast. My mother and father were already in the kitchen. My father was reading the Thai Rath newspaper. My mother had cooked me fried eggs. I drank some orange juice while I watched the news on the television. I then got my school bag ready."
+        "response": "I've been dreading Monday all weekend. I forgot to do my homework because I was staying up all night to finish my project for the hackathon. I'm a little disappointed that it has a couple major bugs, but there's only so much you can do in 36 hours. I just really need some sleep right now."
       }
     ]
   },
@@ -48,7 +69,7 @@ var data = [
     "flow": [
       {
         "prompt": "How was your day today?",
-        "response": "It was amazing!"
+        "response": "It was amazing"
       },
       {
         "prompt": "Would you like to talk about it?",
