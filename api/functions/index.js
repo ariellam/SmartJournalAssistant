@@ -15,20 +15,20 @@ admin.initializeApp({
 });
 
 // Take the text parameter passed to this HTTP endpoint and insert it into the
-// Realtime Database under the path /messages/:pushId/original
+// Realtime Database under the path /entries/:entry
 exports.addEntry = functions.https.onRequest((req, res) => {
   // Grab the text parameter.
   const original = JSON.parse(req.body);
-  // might need to parse this??? depending on what it looks like
 
   // Push the new message into the Realtime Database using the Firebase Admin SDK.
-  return admin.database().ref('/entry').push(original).then((snapshot) => {
+  return admin.database().ref('/entries').push(original).then((snapshot) => {
     // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
     return res.redirect(303, snapshot.ref.toString());
   });
 });
 
-exports.analyzeEntry = functions.database.ref('/entry/{pushId}')
+// every time a new entry is added into the database, this function runs and adds analytics
+exports.analyzeEntry = functions.database.ref('/entries/{pushId}')
 .onCreate((snapshot, context) => {
     // current value in db
     const data = snapshot.val();
@@ -42,11 +42,12 @@ exports.analyzeEntry = functions.database.ref('/entry/{pushId}')
             "sadness"
         ]
     };
-    return admin.database().ref('/entry/' + context.params.pushId).update(data);
+    return admin.database().ref('/entries/' + context.params.pushId).update(data);
 });
 
+// this function is called every time a get request is made to this endpoint
 exports.getAllEntries = functions.https.onRequest((req, res) => {
-    return admin.database().ref('/entry').once('value').then(function(snapshot) {
+    return admin.database().ref('/entries').once('value').then(function(snapshot) {
         return res.status(200).send(snapshot.val());
       }, function (error) {
           console.log(error);
