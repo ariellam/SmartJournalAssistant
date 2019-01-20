@@ -5,6 +5,7 @@
 }
 
 .mainView {
+    height: 615px;
     padding: 50px;
     font-family: 'Rubik', sans-serif;
 }
