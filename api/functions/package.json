@@ -9,6 +9,8 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
+    "asyncawait": "^1.0.7",
+    "asyncwait": "^1.0.2",
     "express": "^4.16.4",
     "firebase-admin": "^6.0.0",
     "firebase-functions": "^2.1.0",
