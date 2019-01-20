@@ -46,11 +46,27 @@ nlu.analyze(params, function(err, res) {
         console.log(err);
         return;
     }
-    console.log(res);
+    // console.log(res);
+    var analysis = formatAnalysis(res);
+    console.log(analysis)
     // console.log(res.keywords);
     // console.log(res.keywords[0]);
     // console.log(res.keywords[0].sentiment)
     // TODO: save result to database
 });
 
+// format Watson response into object to store in database
+function formatAnalysis(res) {
+    var data = {
+        overall_sentiment: {
+            score: res.sentiment.document.score,
+            label: res.sentiment.document.label
+        },
+        keywords: res.keywords,
+        entities: res.entities,
+        overall_emotion: res.emotion.document.emotion,
+        concepts: res.concepts
+    }   
+    return data;
+}
 
