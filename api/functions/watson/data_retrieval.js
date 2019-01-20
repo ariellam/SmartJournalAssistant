@@ -9,19 +9,21 @@ require('./watson_api_key.js');
 require('./sample_speech')
 
 // supplying the API key
-function watsonObject() { 
-    this.nlu = new NaturalLanguageUnderstandingV1({
-        // note: if unspecified here, credentials are pulled from environment properties:
-        iam_apikey: key,
-        version: '2018-04-05',
-        url: 'https://gateway-wdc.watsonplatform.net/natural-language-understanding/api'
-    });
+const nlu = new NaturalLanguageUnderstandingV1({
+    // note: if unspecified here, credentials are pulled from environment properties:
+    iam_apikey: key,
+    version: '2018-04-05',
+    url: 'https://gateway-wdc.watsonplatform.net/natural-language-understanding/api'
+});
+
+function watsonObject() {
+    this.nlu = nlu;
 }
 
 // analyze sample text
 
-function getAnalysis(data) {
-    var combinedResponses = parseText(data);
+watsonObject.prototype.getAnalysis = function(data) {
+    var combinedResponses = this.parseText(data);
     var params = {
         html: combinedResponses,
         features: {
@@ -45,8 +47,14 @@ function getAnalysis(data) {
             
         }
     }
-    var analysis = analyzeText(params);
-    formatAnalysis(analysis);
+    async function analysis(){
+        var analysis = await watsonObject.prototype.analyzeText(params);
+        console.log(analysis);
+        return watsonObject.prototype.formatAnalysis(analysis);
+    };
+    analysis();
+    
+
 }
 
 // combine all user responses from google home
@@ -59,36 +67,35 @@ watsonObject.prototype.parseText = function(data) {
 }
 
 // retrieve sentiment analysis
-function analyzeText(params) {
+watsonObject.prototype.analyzeText = function(params) {
     nlu.analyze(params, function(err, res) {
         if (err) {
+            console.log("error");
             console.log(err);
             return;
         }
-        // console.log(res);
-        var analysis = formatAnalysis(res);
-        console.log(analysis)
-        // console.log(res.keywords);
-        // console.log(res.keywords[0]);
-        // console.log(res.keywords[0].sentiment)
-        // TODO: save result to database
-        return analysis;
+        console.log('result');
+        console.log(res);
+        return res;
     });
 }
 
 // format Watson response into object to store in database
-function formatAnalysis(res) {
-    var data = {
-        overall_sentiment: {
-            score: res.sentiment.document.score,
-            label: res.sentiment.document.label
-        },
-        keywords: res.keywords,
-        entities: res.entities,
-        overall_emotion: res.emotion.document.emotion,
-        concepts: res.concepts
-    }   
-    return data;
+watsonObject.prototype.formatAnalysis = function(res) {
+    if(res){
+        var data = {
+            overall_sentiment: {
+                score: res.sentiment.document.score,
+                label: res.sentiment.document.label
+            },
+            keywords: res.keywords,
+            entities: res.entities,
+            overall_emotion: res.emotion.document.emotion,
+            concepts: res.concepts
+        }  
+        console.log(data); 
+        return data;
+    }
 }
 
 module.exports = watsonObject;
