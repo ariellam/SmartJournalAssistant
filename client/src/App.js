@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import ImagePreviewTable from './components/ImagePreviewTable';
-import ImageModal from './components/ImageModal';
+import TitlePage from './components/TitlePage';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">  
-        <ImageModal/>
-        <ImagePreviewTable />
+      <div className="App">
+        <TitlePage/>
       </div>
     );
   }
