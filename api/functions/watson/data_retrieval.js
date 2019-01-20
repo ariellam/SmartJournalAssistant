@@ -9,15 +9,16 @@ require('./watson_api_key.js');
 require('./sample_speech')
 
 // supplying the API key
-var nlu = new NaturalLanguageUnderstandingV1({
-  // note: if unspecified here, credentials are pulled from environment properties:
-  iam_apikey: key,
-  version: '2018-04-05',
-  url: 'https://gateway-wdc.watsonplatform.net/natural-language-understanding/api'
-});
+function watsonObject() { 
+    this.nlu = new NaturalLanguageUnderstandingV1({
+        // note: if unspecified here, credentials are pulled from environment properties:
+        iam_apikey: key,
+        version: '2018-04-05',
+        url: 'https://gateway-wdc.watsonplatform.net/natural-language-understanding/api'
+    });
+}
 
 // analyze sample text
-
 
 function getAnalysis(data) {
     var combinedResponses = parseText(data);
@@ -49,8 +50,12 @@ function getAnalysis(data) {
 }
 
 // combine all user responses from google home
-function parseText(data) {
-
+watsonObject.prototype.parseText = function(data) {
+    var response = "";
+    for (let item in data) {
+        response = response + item.response;
+    }
+    return response;
 }
 
 // retrieve sentiment analysis
@@ -86,3 +91,4 @@ function formatAnalysis(res) {
     return data;
 }
 
+module.exports = watsonObject;
