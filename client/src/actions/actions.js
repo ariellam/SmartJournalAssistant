@@ -1,53 +1,33 @@
-// Actions are used to send data to the store using dispatch
-// actionCreators are functions that create and return actions
+import data from '../data.js'
 
 // Define action types
-export const SET_USER_DATA = 'SET_USER_DATA';
-export const SET_IMAGE_DATA = 'SET_IMAGE_DATA';
-export const SET_ALL_IMAGE_DATA = 'SET_ALL_IMAGE_DATA';
+export const GET_CONVO_DATA = 'GET_CONVO_DATA';
 
 const URL = "http://localhost:3001/";
+
 // Action creators
-export const setUserData = (userId) => dispatch =>  {
-    console.log("fetching data for userid=" + userId)
-    fetch(URL + "users/" + userId, {
-        method: "GET"
-    })
-    .then(res => res.json())
-    .then(data => {console.log(data.data);
-        dispatch({
-            type: SET_USER_DATA,
-            payload: data.data
-        })}
-    );
+// update state with data from firebase whenever this action is called
+export const getConvoData = () => dispatch =>  {
+  console.log("setting convo data");
+  dispatch({
+    type: GET_CONVO_DATA,
+    payload: data
+  })
+}
+
+// export const getConvoData = () => dispatch =>  {
+//     console.log("fetching convo data")
+//     fetch(URL, {
+//         method: "GET"
+//     })
+//     .then(res => res.json())
+//     .then(data => {console.log(data);
+//         dispatch({
+//             type: GET_CONVO_DATA,
+//             payload: data
+//         })}
+//     );
     
-}
+// }
 
-export const setImageData = (imageId) => dispatch => {
-    console.log("fetching data for imageId=" + imageId)
-    fetch(URL + "content/" + imageId, {
-        method: "GET"
-    })
-    .then(res => res.json())
-    .then(data => {
-        dispatch({
-            type: SET_IMAGE_DATA,
-            payload: data.data
-        })}
-    );
-}
-
-export const setAllImageData = () => dispatch => {
-    console.log("fetching all image data")
-    fetch(URL + "content/", {
-        method: "GET"
-    })
-    .then(res => res.json())
-    .then(data => {
-        dispatch({
-            type: SET_ALL_IMAGE_DATA,
-            payload: data.data
-        })}
-    );
-}
 

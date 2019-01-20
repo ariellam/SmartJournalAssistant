@@ -3,37 +3,24 @@
 // A reducer should not mutate its arguments or have any side effects
 
 import {
-    SET_USER_DATA,
-    SET_IMAGE_DATA,
-    SET_ALL_IMAGE_DATA
+    GET_CONVO_DATA
 } from './../actions/actions.js'
 
 const initialState = {
-    userData: [],
-    imageData: [],
-    allImageData: []
+    convoData: {}
 }
 
-function contentHubApp(state = initialState, action) {
+function DeScribeApp(state = initialState, action) {
     console.log("action type: " + action.type);
     switch (action.type) {
-        case SET_USER_DATA:
-            console.log("set user data: ");
+        case GET_CONVO_DATA:
             console.log(action.payload);
             return Object.assign({}, state, {
-                userData: action.payload
-            })
-        case SET_IMAGE_DATA:
-            return Object.assign({}, state, {
-                imageData: action.payload
-            })
-        case SET_ALL_IMAGE_DATA:
-            return Object.assign({}, state, {
-                allImageData: action.payload
+                convoData: action.payload
             })
         default:
             return state
     }
 }
 
-export default contentHubApp;
+export default DeScribeApp;
