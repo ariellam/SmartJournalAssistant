@@ -36,7 +36,7 @@ exports.analyzeEntry = functions.database.ref('/entries/{pushId}')
     // current value in db
     data = snapshot.val();
 
-    data['test'] = watson_nlp.parseText();
+    data['string'] = watson_nlp.parseText(data);
     // call ibm watson here
         // testing
     data['analytics'] = {
@@ -47,6 +47,7 @@ exports.analyzeEntry = functions.database.ref('/entries/{pushId}')
             "sadness"
         ]
     };
+
     return admin.database().ref('/entries/' + context.params.pushId).update(data);
 });
 

@@ -52,8 +52,8 @@ function getAnalysis(data) {
 // combine all user responses from google home
 watsonObject.prototype.parseText = function(data) {
     var response = "";
-    for (let item in data) {
-        response = response + item.response;
+    for (let i = 0; i < data.flow.length; i++) {
+        response = response + ' ' + data.flow[i]['response'];
     }
     return response;
 }
