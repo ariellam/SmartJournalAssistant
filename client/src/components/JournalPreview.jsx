@@ -3,6 +3,11 @@ import { connect } from "react-redux";
 import {
   getConvoData
 } from '../actions/actions.js'
+<<<<<<< Updated upstream
+=======
+import "../styles/JournalPage.css";
+
+>>>>>>> Stashed changes
 
 class JournalPreview extends Component {  
   constructor(props) {
@@ -15,8 +20,14 @@ class JournalPreview extends Component {
   render() {
     console.log(this.props.convoData[0]);
     return (
+<<<<<<< Updated upstream
       <div className="list-group" id="list-tab" role="tablist">
         <a className="list-group-item list-group-item-action active" id="list-entry1-list" data-toggle="list" href="#list-entry1" role="tab" aria-controls="entry1">
+=======
+      <div className="container sidebar text-left">
+        <div className="list-group overflow-y-scroll" id="list-tab" role="tablist">
+        <a className="list-group-item list-group-item-action" id="list-entry1-list" data-toggle="list" href="#list-entry1" role="tab" aria-controls="entry1">
+>>>>>>> Stashed changes
           <div className="d-flex w-100 justify-content-between">
             <h5 className="mb-1">{this.props.convoData[0] ? this.props.convoData[0].time_created : ""}</h5>
           </div>
@@ -41,6 +52,10 @@ class JournalPreview extends Component {
           <p className="mb-1">{this.props.convoData[3] ? this.props.convoData[3].flow[0].response : ""}</p>
         </a>              
       </div>
+<<<<<<< Updated upstream
+=======
+      </div>
+>>>>>>> Stashed changes
     );
   }
 }
