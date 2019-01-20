@@ -1,4 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
 .btn-primary{
     background-color: blue;
-    
+}
+
+.mainView {
+    padding: 50px;
+    font-family: 'Rubik', sans-serif;
+}
+.TitlePage {
+    background-color: #FFF8E9;
+}
+.buttonStyle {
+    width: 366px;
+    height: 366px;
+    padding: 50px;
+    padding-top: 70px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.buttonRow {
+    width: 900px;
+    padding: 20px;
+}
+
+.leftButtonStyle {
+    background-color: #7D5480;
+}
+
+.rightButtonStyle {
+    background-color: #97B798;
+}
+
+.buttonText {
+    color: white;
+    font-size: 36px;
+    padding: 20px;
+}
+.extraPadding {
+    padding-top: 40px;
 }
