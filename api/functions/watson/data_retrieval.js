@@ -7,6 +7,9 @@ var NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-lan
 const watson = require('watson-developer-cloud');
 require('./watson_api_key.js');
 require('./sample_speech')
+var async = require('asyncawait/async');
+var await = require('asyncawait/await');
+
 
 // supplying the API key
 const nlu = new NaturalLanguageUnderstandingV1({
@@ -23,7 +26,7 @@ function watsonObject() {
 // analyze sample text
 
 watsonObject.prototype.getAnalysis = function(data) {
-    var combinedResponses = this.parseText(data);
+    var combinedResponses = data;
     var params = {
         html: combinedResponses,
         features: {
@@ -47,22 +50,14 @@ watsonObject.prototype.getAnalysis = function(data) {
             
         }
     }
-    async function analysis(params){
-        await watsonObject.prototype.analyzeText(params);
-    };
+    function analysis(params){
+        watsonObject.prototype.analyzeText(params);
+    }
 
     analysis(params);
 
 }
 
-// combine all user responses from google home
-watsonObject.prototype.parseText = function(data) {
-    var response = "";
-    for (let i = 0; i < data.flow.length; i++) {
-        response = response + ' ' + data.flow[i]['response'];
-    }
-    return response;
-}
 
 // retrieve sentiment analysis
 watsonObject.prototype.analyzeText = function(params) {
