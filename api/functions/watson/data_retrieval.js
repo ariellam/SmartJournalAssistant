@@ -47,8 +47,8 @@ watsonObject.prototype.getAnalysis = function(data) {
             
         }
     }
-    async function analysis(params){
-        await watsonObject.prototype.analyzeText(params);
+    function analysis(params){
+        watsonObject.prototype.analyzeText(params);
     };
 
     analysis(params);
