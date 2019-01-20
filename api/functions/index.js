@@ -18,7 +18,7 @@ admin.initializeApp({
 // Realtime Database under the path /entries/:entry
 exports.addEntry = functions.https.onRequest((req, res) => {
   // Grab the text parameter.
-  const original = JSON.parse(req.body);
+  const original = req.body;
 
   // Push the new message into the Realtime Database using the Firebase Admin SDK.
   return admin.database().ref('/entries').push(original).then((snapshot) => {
