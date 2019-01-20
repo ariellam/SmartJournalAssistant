@@ -1,7 +1,7 @@
 
 var data = [
   {
-    "time_created": "January 2nd, 2019",
+    "time_created": "January 19th, 2019",
     "duration": "00:35:21",
     "flow": [
       {
@@ -50,7 +50,7 @@ var data = [
     ]
   },
   {
-    "time_created": "January 22nd, 2019",
+    "time_created": "January 5th, 2019",
     "duration": "00:56:01",
     "flow": [
       {
@@ -64,7 +64,7 @@ var data = [
     ]
   },
   {
-    "time_created": "January 25th, 2019",
+    "time_created": "January 2nd, 2019",
     "duration": "00:10:28",
     "flow": [
       {
