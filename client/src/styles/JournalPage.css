@@ -2,6 +2,7 @@
     background-color: #FFF8E9;
     font-family: 'Rubik', sans-serif;
     color: #705151;
+    height: 615px;
 }
 
 .nav {
@@ -33,6 +34,7 @@
 
 .list-group-item.active, 
 .list-group-item.hover {
+  border-radius: 0px;
   background-color: #979797;
   height: 160px;
   /* border-radius: 0px; */

@@ -1,23 +1,13 @@
 import React, { Component } from 'react';
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-import { connect } from "react-redux";
-=======
->>>>>>> Stashed changes
 import { connect } from 'react-redux';
 import JournalPreview from './JournalPreview';
 import JournalText from './JournalText';
 import {
   getConvoData
 } from '../actions/actions.js'
-<<<<<<< Updated upstream
-=======
 import "../styles/JournalPage.css";
 import kiwi from '../images/kiwi.png'
 import Image from "./Image";
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 class JournalPage extends Component {  
   constructor(props) {
