@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux'
-import contentHubApp from './reducers'
+import DeScribeApp from './reducers'
 import thunk from 'redux-thunk'
 
 /* 
@@ -9,7 +9,7 @@ states:
 - allImageData
 */
 
-const store = createStore(contentHubApp, applyMiddleware(thunk))
+const store = createStore(DeScribeApp, applyMiddleware(thunk))
 
 // Log the initial state
 console.log(store.getState())

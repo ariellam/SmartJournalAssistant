@@ -6,8 +6,16 @@ import book from '../images/book.png'
 import dash from '../images/dash.png'
 
 import Image from './Image'
+import {
+  getConvoData
+} from '../actions/actions.js'
 
 class TitlePage extends Component {
+  constructor(props) {
+    super(props);
+    // this.props.getConvoData(); 
+  }
+
   render() {
     return (
       <div className="TitlePage mainView">
@@ -30,5 +38,21 @@ class TitlePage extends Component {
     );
   }
 }
+
+// const mapStateToProps = state => {
+//   return {
+//     convoData: state.convoData
+//   };
+// };
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     getConvoData: () => dispatch(getConvoData())
+//   };
+// }
+
+// export default connect(
+//   mapStateToProps, mapDispatchToProps
+// )(TitlePage);
 
 export default TitlePage;
