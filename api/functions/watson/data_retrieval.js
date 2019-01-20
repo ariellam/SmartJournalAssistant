@@ -17,43 +17,59 @@ var nlu = new NaturalLanguageUnderstandingV1({
 });
 
 // analyze sample text
-var params = {
-    html: speechText,
-    features: {
-        sentiment: {
-            document: true
-        },
-        emotion: {
-            document: true
-        },
-        concepts: {
-            limit: 3
-        },
-        entities: {
-            emotion: true
-        },
-        keywords: {
-            sentiment: true,
-            emotion: true,
-            limit: 5
-        },
-        
+
+
+function getAnalysis(data) {
+    var combinedResponses = parseText(data);
+    var params = {
+        html: combinedResponses,
+        features: {
+            sentiment: {
+                document: true
+            },
+            emotion: {
+                document: true
+            },
+            concepts: {
+                limit: 3
+            },
+            entities: {
+                emotion: true
+            },
+            keywords: {
+                sentiment: true,
+                emotion: true,
+                limit: 5
+            },
+            
+        }
     }
+    var analysis = analyzeText(params);
+    formatAnalysis(analysis);
 }
 
-nlu.analyze(params, function(err, res) {
-    if (err) {
-        console.log(err);
-        return;
-    }
-    // console.log(res);
-    var analysis = formatAnalysis(res);
-    console.log(analysis)
-    // console.log(res.keywords);
-    // console.log(res.keywords[0]);
-    // console.log(res.keywords[0].sentiment)
-    // TODO: save result to database
-});
+// combine all user responses from google home
+function parseText(data) {
+
+}
+
+// retrieve sentiment analysis
+function analyzeText(params) {
+    nlu.analyze(params, function(err, res) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        // console.log(res);
+        var analysis = formatAnalysis(res);
+        console.log(analysis)
+        // console.log(res.keywords);
+        // console.log(res.keywords[0]);
+        // console.log(res.keywords[0].sentiment)
+        // TODO: save result to database
+        return analysis;
+    });
+}
 
 // format Watson response into object to store in database
 function formatAnalysis(res) {
