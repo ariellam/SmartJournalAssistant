@@ -35,18 +35,16 @@ exports.analyzeEntry = functions.database.ref('/entries/{pushId}')
 .onCreate((snapshot, context) => {
     // current value in db
     data = snapshot.val();
+    data['analytics'] = watson_nlp.getAnalysis(data);
 
-    data['string'] = watson_nlp.parseText(data);
-    // call ibm watson here
-        // testing
-    data['analytics'] = {
-        "test": "aaaaa",
-        "emotions": [
-            "happiness",
-            "anger",
-            "sadness"
-        ]
-    };
+    // data['analytics'] = {
+    //     "test": "aaaaa",
+    //     "emotions": [
+    //         "happiness",
+    //         "anger",
+    //         "sadness"
+    //     ]
+    // };
 
     return admin.database().ref('/entries/' + context.params.pushId).update(data);
 });
@@ -59,6 +57,26 @@ exports.getAllEntries = functions.https.onRequest((req, res) => {
           console.log(error);
       });
 })
+
+var data = {
+	"time_created": "2014-06-01T12:00:00Z",
+	"duration": "11:59:01",
+	"flow": [
+		{
+			"prompt": "How are you feeling today?",
+			"response": "I am sad."
+		},
+		{
+			"prompt": "Do you want to talk about it?",
+			"response": "incredible amounts of angerrryyyy." 
+		},
+			{
+			"prompt": "Do you want to talk about it?",
+			"response": "incredible amoun." 
+		}
+	]
+}
+watson_nlp.getAnalysis(data);
 
 // exports.testFunction = functions.https.onRequest((req, res) => {
 //     // Grab the text parameter.
