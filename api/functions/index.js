@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express();
 
-const watson_nlp = require('watson/data_retrieval.js');
+const watsonObject = require('./watson/data_retrieval');
+const watson_nlp = new watsonObject();
 
 // The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
 const functions = require('firebase-functions');
@@ -33,11 +34,11 @@ exports.addEntry = functions.https.onRequest((req, res) => {
 exports.analyzeEntry = functions.database.ref('/entries/{pushId}')
 .onCreate((snapshot, context) => {
     // current value in db
-    const data = snapshot.val();
-    // call ibm watson here
-    
+    data = snapshot.val();
 
-    // testing
+    data['test'] = watson_nlp.parseText();
+    // call ibm watson here
+        // testing
     data['analytics'] = {
         "test": "aaaaa",
         "emotions": [
