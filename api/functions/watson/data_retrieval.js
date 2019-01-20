@@ -47,13 +47,11 @@ watsonObject.prototype.getAnalysis = function(data) {
             
         }
     }
-    async function analysis(){
-        var analysis = await watsonObject.prototype.analyzeText(params);
-        console.log(analysis);
-        return watsonObject.prototype.formatAnalysis(analysis);
+    async function analysis(params){
+        await watsonObject.prototype.analyzeText(params);
     };
-    analysis();
-    
+
+    analysis(params);
 
 }
 
@@ -70,13 +68,10 @@ watsonObject.prototype.parseText = function(data) {
 watsonObject.prototype.analyzeText = function(params) {
     nlu.analyze(params, function(err, res) {
         if (err) {
-            console.log("error");
-            console.log(err);
-            return;
+            return console.log(err);
         }
-        console.log('result');
-        console.log(res);
-        return res;
+
+        else watsonObject.prototype.formatAnalysis(res);
     });
 }
 
@@ -96,6 +91,7 @@ watsonObject.prototype.formatAnalysis = function(res) {
         console.log(data); 
         return data;
     }
+    console.log('data is undefined');
 }
 
 module.exports = watsonObject;
