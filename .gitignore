@@ -13,7 +13,7 @@
 .firebaserc
 
 # watson
-watson_api_key
+/watson_api_key
 
 # misc
 *.DS_Store
