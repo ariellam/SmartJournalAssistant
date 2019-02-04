@@ -13,7 +13,11 @@
 .firebaserc
 
 # watson
+<<<<<<< HEAD
 watson_api_key
+=======
+/watson_api_key
+>>>>>>> 37ab8c74c255b0b13f6f87c388b078b52787e6fb
 
 # misc
 *.DS_Store
@@ -23,4 +27,8 @@ watson_api_key
 .env.production.local
 package-lock.json
 npm-debug.log*
+<<<<<<< HEAD
 *.log
+=======
+*.log
+>>>>>>> 37ab8c74c255b0b13f6f87c388b078b52787e6fb
