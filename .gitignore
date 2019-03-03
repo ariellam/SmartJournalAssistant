@@ -11,9 +11,10 @@
 
 # firebase
 .firebaserc
+serviceAccountKey.json
 
 # watson
-/watson_api_key
+watson_api_key.js
 
 # misc
 *.DS_Store
