@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import Image from './Image'
 import { connect } from "react-redux";
+import dash from '../images/logo.png'
+import '../styles/Dashboard.css';
 import {
   getConvoData
 } from '../actions/actions.js'
@@ -28,8 +31,17 @@ class DashboardPage extends Component {
     console.log(this.props.convoData);
     return (
       <div className="DashboardPage">
-      {/* replace h2 with custom header */}
-        <h2>Dashboard Page</h2>  
+         <div className="Navbar">
+          {/* <Image src={ dash }></Image> */}
+         </div>
+        <div className="content">
+        <div className="date">
+          January 20th 2019
+        </div>
+        <div>
+          <div>10</div>minutes spoken
+        </div>
+        </div>
         <div className="container">
           <div className="row">
             <div className="col-md-9">

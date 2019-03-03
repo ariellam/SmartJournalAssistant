@@ -4,6 +4,7 @@ import '../styles/TitlePage.css';
 import logo from '../images/logo.png'
 import book from '../images/book.png'
 import dash from '../images/dash.png'
+import { Link } from 'react-router-dom'
 
 import Image from './Image'
 import {
@@ -22,16 +23,20 @@ class TitlePage extends Component {
           <Image src={logo} width={400}/>
           <div className="buttonRow row mx-auto">
             <div className="col mx-auto">
+            <Link to="/journal">
               <button type="button" className="btn buttonStyle leftButtonStyle mx-auto">
                 <Image src={book} width={175} />
                 <p className="buttonText extraPadding">Journal</p>
               </button>
+              </Link>
             </div>
             <div className="col">
+              <Link to="/dashboard">
               <button type="button" className="btn buttonStyle rightButtonStyle mx-auto">
                 <Image src={dash} width={175}/>
                 <p className="buttonText">Dashboard</p>
               </button>
+              </Link>
             </div>
           </div>
       </div>
