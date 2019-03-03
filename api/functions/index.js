@@ -22,12 +22,11 @@ admin.initializeApp({
 exports.addEntry = functions.https.onRequest((req, res) => {
     // Grab the text parameter.
     const original = req.body;
-    console.log(original);
-    response = {
-        'response': original.queryResult.queryText
-    }
+    // response = {
+    //     'response': original.queryResult.queryText
+    // }
     // Push the new message into the Realtime Database using the Firebase Admin SDK.
-    return admin.database().ref('/entries').push(response).then((snapshot) => {
+    return admin.database().ref('/entries').push(original).then((snapshot) => {
         // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
         return res.redirect(303, snapshot.ref.toString());
     });
